@@ -1,10 +1,10 @@
-// Helper: Convert country code (like 'IN') to full country name (like 'India')
+// i have Converted country code (eg: 'IN') to full country name (like 'India')
 function getCountryName(code) {
   const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
   return regionNames.of(code);
 }
 
-// Main function to fetch and display weather
+// Main function i have used to fetch and display weather
 async function getFiveDayForecast(city) {
   const apiKey = "d0e77e91efd14070ce97468b8e42f23a";
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
@@ -17,7 +17,7 @@ async function getFiveDayForecast(city) {
       throw new Error("Invalid API response");
     }
 
-    // Filter forecast to only 12:00 PM entries (1 per day)
+    // this Filter forecast to only 12:00 PM entries ( per day)
     const dailyData = data.list.filter(item => item.dt_txt.includes("12:00:00"));
     if (dailyData.length === 0) throw new Error("No forecast data found");
 
@@ -52,7 +52,7 @@ async function getFiveDayForecast(city) {
     document.getElementById("weather-desc").textContent = `Weather Description: ${description}`;
     document.getElementById("temp").textContent = `Temperature: ${temp}°C`;
 
-    // Insert or update weather icon
+    // Inserted weather icon
     let iconImg = document.querySelector("aside > div.absolute img.weather-icon");
     if (!iconImg) {
       iconImg = document.createElement("img");
@@ -71,11 +71,11 @@ async function getFiveDayForecast(city) {
       textContainer.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
     }
 
-    // Clear previous forecast
+    // this will change  or  Clear previous forecast
     const forecastContainer = document.getElementById("forecast");
     forecastContainer.innerHTML = "";
 
-    // Create 5-day forecast cards
+    // this will Create 5-day forecast cards
     dailyData.slice(0, 5).forEach(day => {
       const date = new Date(day.dt_txt).toLocaleDateString("en-US", {
         weekday: "short",
