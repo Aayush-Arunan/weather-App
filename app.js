@@ -37,7 +37,7 @@ async function getFiveDayForecast(city) {
     const defaultImage = "src/images/default.jpg";
 
     // Set background image in <aside>
-    const asideImg = document.querySelector("#aside-img");
+    const asideImg = document.querySelector("aside-img");
     if (asideImg) {
       asideImg.src = weatherImages[weatherMain] || defaultImage;
     }
