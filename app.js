@@ -1,10 +1,10 @@
-// i have Converted country code (eg: 'IN') to full country name (like 'India')
+// Convert country code (eg: 'IN') to full country name (like 'India')
 function getCountryName(code) {
   const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
   return regionNames.of(code);
 }
 
-// Main function i have used to fetch and display weather
+// Main function to fetch and display weather
 async function getFiveDayForecast(city) {
   const apiKey = "d0e77e91efd14070ce97468b8e42f23a";
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
@@ -17,7 +17,7 @@ async function getFiveDayForecast(city) {
       throw new Error("Invalid API response");
     }
 
-    // this Filter forecast to only 12:00 PM entries ( per day)
+    // Filter forecast to only 12:00 PM entries per day
     const dailyData = data.list.filter(item => item.dt_txt.includes("12:00:00"));
     if (dailyData.length === 0) throw new Error("No forecast data found");
 
@@ -28,7 +28,7 @@ async function getFiveDayForecast(city) {
     const weatherImages = {
       rain: "images/rain.png",
       snow: "images/snow.png",
-      clear: "images/hot.png", // "Clear" is the term used by OpenWeatherMap so to understand i have used it
+      clear: "images/hot.png",
       clouds: "images/cloudy.png", 
       drizzle: "images/drizzle.png", 
       thunderstorm: "images/storm.png" 
@@ -37,8 +37,10 @@ async function getFiveDayForecast(city) {
     const defaultImage = "images/default.jpg";
 
     // Set background image in <aside>
-    const asideImg = document.querySelector("aside img");
-    asideImg.src = weatherImages[weatherMain] || defaultImage;
+    const asideImg = document.querySelector("#aside-img");
+    if (asideImg) {
+      asideImg.src = weatherImages[weatherMain] || defaultImage;
+    }
 
     // Set current weather data
     const cityName = data.city.name;
@@ -52,7 +54,7 @@ async function getFiveDayForecast(city) {
     document.getElementById("weather-desc").textContent = `Weather Description: ${description}`;
     document.getElementById("temp").textContent = `Temperature: ${temp}°C`;
 
-    // Inserted weather icon
+    // Insert weather icon inside aside text container
     let iconImg = document.querySelector("aside > div.absolute img.weather-icon");
     if (!iconImg) {
       iconImg = document.createElement("img");
@@ -62,20 +64,22 @@ async function getFiveDayForecast(city) {
     iconImg.src = currentIconUrl;
     iconImg.alt = description;
 
-    // Styling (optional background overlays)
-    const aside = document.querySelector("aside");
-    aside.style.backgroundColor = "rgba(156, 163, 175, 0.3)";
+    // Optional background overlays styling
+    const aside = document.querySelector("#aside-img");
+    if (aside) {
+      aside.style.backgroundColor = "rgba(156, 163, 175, 0.3)";
+    }
 
     const textContainer = document.querySelector("aside > div.absolute");
     if (textContainer) {
       textContainer.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
     }
 
-    // this will change  or  Clear previous forecast
+    // Clear previous forecast
     const forecastContainer = document.getElementById("forecast");
     forecastContainer.innerHTML = "";
 
-    // this will Create 5-day forecast cards
+    // Create 5-day forecast cards
     dailyData.slice(0, 5).forEach(day => {
       const date = new Date(day.dt_txt).toLocaleDateString("en-US", {
         weekday: "short",
@@ -122,4 +126,3 @@ document.getElementById("SearchButton").addEventListener("click", () => {
     alert("Please enter a city name.");
   }
 });
-

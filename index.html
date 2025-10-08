@@ -1,60 +1,63 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="src/output.css" rel="stylesheet"/>
-
-  <title>Weather App</title>  
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weather App</title>
+  <link href="src/output.css" rel="stylesheet" />
 </head>
 <body class="flex flex-col min-h-screen bg-gradient-to-r from-blue-100 via-pink-200 to-pink-50">
 
-  
-        <header class="text-center mb-6">
-            <h1 class="text-4xl font-bold text-gray-600">Weather Forecasting</h1>
-            <p class="text-gray-600 mt-3">Check the weather for multiple countries!</p>
-        </header> 
+  <!-- Header -->
+  <header class="text-center mb-6">
+    <h1 class="text-4xl font-bold text-gray-700">Weather Forecasting</h1>
+    <p class="text-gray-600 mt-2">Check the weather for multiple countries!</p>
+  </header>
 
-        
-        <!-- Search Section design -->
-        <section class="mb-6  flex flex-col md:flex-row items-center justify-center gap-4 w-full ">
-            <input id="Searchinput" type="text" placeholder="Enter country city name (eg. india,)" class="p-2 rounded-2xl text-center border  min-w-1/2 md:w-auto ">
-            <button id="SearchButton" class="bg-blue-600 text-white px-4 py-2 rounded-2xl hover:bg-blue-700 sm:w-auto">Search</button>
-        </section>
-        
-        <!-- Weather cards -->
-      <div class="flex flex-col lg:flex-row gap-6"> 
-         <aside class="relative w-full h-110 bg-gray-300 flex flex-col justify-center items-center">
-            <img src="images/rain.png" alt="weather" class="w-full h-full object-cover" id="aside img" >
-            <!-- text inside the picture -->
-            <div class="absolute bottom-4 left-4 right-4 bg-black bg-opacity-50 text-white p-4 rounded">
+  <!-- Search Section -->
+  <section class="mb-6 flex flex-col md:flex-row items-center justify-center gap-4 px-4">
+    <input id="Searchinput" 
+           type="text" 
+           placeholder="Enter country city name (e.g., India)" 
+           class="p-2 rounded-2xl text-center border border-gray-400 w-full md:w-1/3" />
+    <button id="SearchButton" 
+            class="bg-blue-600 text-white px-4 py-2 rounded-2xl hover:bg-blue-700 w-full md:w-auto">
+      Search
+    </button>
+  </section>
 
-               <h2 id="City-name" class="text-2xl font-bold">Country Name : </h2>
-               <p id="weather-desc"  class="capitalize">Weather Description : </p>
-               <p id="temp"  class="text-2xl font-semibold">Temperature : </p>
-            </div>
-         </aside>
+  <!-- Weather and Forecast Section -->
+  <div class="flex flex-col lg:flex-row gap-6 px-4">
 
-        <div class="flex flex-col lg:flex-row md-row gap-6 px-4 items-center">
-         <div id="weatherCards" class="grid grid-cols-1 sm:grid-col-2  w-60  gap-6  ">
-            <div class="w-12 p-4"><h2 class="text-xl text-center font-bold text-gray-700"> 5 - Day Forecast</h2> 
-            <div id="forecast" class="flex sm:grid-cols-3 sm:grid-rows-2 md:grid-cols-4 gap-4"></div>
-         </div>
-      </div>   
+    <aside class="relative w-full lg:w-2/5 h-72 sm:h-80 md:h-96 rounded-lg overflow-hidden shadow-md bg-gray-300">
+  <!-- Weather Image (should be absolutely positioned inside aside) -->
+  <img src="images/hot.png" alt="weather" id="aside-img" 
+       class="absolute inset-0 w-full h-full object-cover z-0" />
 
-           
-           
-         </section>
-        
-         <!--Footer  -->
+  <!-- Overlay Text (on top of the image) -->
+  <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-4 space-y-1 z-10">
+    <h2 id="City-name" class="text-xl font-bold">City: Delhi, India</h2>
+    <p id="weather-desc" class="capitalize">Weather Description: Light Rain</p>
+    <p id="temp" class="text-lg font-semibold">Temperature: 29°C</p>
+  </div>
+</aside>
+    
 
-         <footer class=" text-gray-500 text-center py-4  shadow-inner w-full"> &copy; 2025 Weather App </footer>
 
-   
- 
+    <!-- Forecast Cards -->
+    <div class="flex flex-col w-full lg:w-3/5 gap-4">
+      <h2 class="text-xl text-center font-bold text-gray-700">5 - Day Forecast</h2>
+      <div id="forecast" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        <!-- JS will dynamically inject forecast cards here -->
+      </div>
+    </div>
+  </div>
 
-  <script src="src/app.js"></script>
+  <!-- Footer -->
+  <footer class="text-gray-500 text-center py-4 mt-auto shadow-inner w-full">
+    &copy; 2025 Weather App
+  </footer>
 
+  <script src="app.js"></script>
 </body>
 </html>
