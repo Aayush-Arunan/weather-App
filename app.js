@@ -26,15 +26,15 @@ async function getFiveDayForecast(city) {
 
     // Map weather conditions to image paths
     const weatherImages = {
-      rain: "images/rain.png",
-      snow: "images/snow.png",
-      clear: "images/hot.png",
-      clouds: "images/cloudy.png", 
-      drizzle: "images/drizzle.png", 
-      thunderstorm: "images/storm.png" 
+      rain: "src/images/rain.png",
+      snow: "src/images/snow.png",
+      clear: "src/images/hot.png",
+      clouds: "src/images/cloudy.png", 
+      drizzle: "src/images/drizzle.png", 
+      thunderstorm: "src/images/storm.png" 
     };
 
-    const defaultImage = "images/default.jpg";
+    const defaultImage = "src/images/default.jpg";
 
     // Set background image in <aside>
     const asideImg = document.querySelector("#aside-img");
