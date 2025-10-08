@@ -37,7 +37,7 @@ async function getFiveDayForecast(city) {
     const defaultImage = "src/images/default.jpg";
 
     // Set background image in <aside>
-    const asideImg = document.querySelector("#aside-img");
+    const asideImg = document.querySelector("aside-img");
     if (asideImg) {
       asideImg.src = weatherImages[weatherMain] || defaultImage;
     }
@@ -65,7 +65,7 @@ async function getFiveDayForecast(city) {
     iconImg.alt = description;
 
     // Optional background overlays styling
-    const aside = document.querySelector("#aside-img");
+    const aside = document.querySelector("aside-img");
     if (aside) {
       aside.style.backgroundColor = "rgba(156, 163, 175, 0.3)";
     }
@@ -126,3 +126,5 @@ document.getElementById("SearchButton").addEventListener("click", () => {
     alert("Please enter a city name.");
   }
 });
+
+
