@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <title>Weather App</title>  
+
+</head>
+<body class="flex flex-col min-h-screen bg-gradient-to-r from-blue-100 via-pink-200 to-pink-50">
+
+  
+        <header class="text-center mb-6">
+            <h1 class="text-4xl font-bold text-gray-600">Weather Forecasting</h1>
+            <p class="text-gray-600 mt-3">Check the weather for multiple countries!</p>
+        </header> 
+
+        
+        <!-- Search Section design -->
+        <section class="mb-6  flex flex-col md:flex-row items-center justify-center gap-4 w-full ">
+            <input id="Searchinput" type="text" placeholder="Enter country city name (eg. india,)" class="p-2 rounded-2xl text-center border  min-w-1/2 md:w-auto ">
+            <button id="SearchButton" class="bg-blue-600 text-white px-4 py-2 rounded-2xl hover:bg-blue-700 sm:w-auto">Search</button>
+        </section>
+        
+        <!-- Weather cards -->
+      <div class="flex flex-col lg:flex-row gap-6"> 
+         <aside class="relative w-full h-110 bg-gray-300 flex flex-col justify-center items-center">
+            <img src="images/rain.png" alt="weather" class="w-full h-full object-cover" id="aside img" >
+            <!-- text inside the picture -->
+            <div class="absolute bottom-4 left-4 right-4 bg-black bg-opacity-50 text-white p-4 rounded">
+
+               <h2 id="City-name" class="text-2xl font-bold">Country Name : </h2>
+               <p id="weather-desc"  class="capitalize">Weather Description : </p>
+               <p id="temp"  class="text-2xl font-semibold">Temperature : </p>
+            </div>
+         </aside>
+
+        <div class="flex flex-col lg:flex-row md-row gap-6 px-4 items-center">
+         <div id="weatherCards" class="grid grid-cols-1 sm:grid-col-2  w-60  gap-6  ">
+            <div class="w-12 p-4"><h2 class="text-xl text-center font-bold text-gray-700"> 5 - Day Forecast</h2> 
+            <div id="forecast" class="flex sm:grid-cols-3 sm:grid-rows-2 md:grid-cols-4 gap-4"></div>
+         </div>
+      </div>   
+
+           
+           
+         </section>
+        
+         <!--Footer  -->
+
+         <footer class=" text-gray-500 text-center py-4  shadow-inner w-full"> &copy; 2025 Weather App </footer>
+
+   
+ 
+
+  <script src="../app.js"></script>
+
+</body>
+</html>
