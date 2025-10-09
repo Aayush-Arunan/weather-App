@@ -21,28 +21,27 @@ async function getFiveDayForecast(city) {
     const dailyData = data.list.filter(item => item.dt_txt.includes("12:00:00"));
     if (dailyData.length === 0) throw new Error("No forecast data found");
 
-    // Get main weather condition of the first forecast day (lowercase)
+    // Get weather condition for image switching
     const weatherMain = dailyData[0].weather[0].main.toLowerCase();
 
-    // Map weather conditions to image paths
+    // Map weather to image path
     const weatherImages = {
       rain: "src/images/rain.png",
       snow: "src/images/snow.png",
       clear: "src/images/hot.png",
-      clouds: "src/images/cloudy.png", 
-      drizzle: "src/images/drizzle.png", 
-      thunderstorm: "src/images/storm.png" 
+      clouds: "src/images/cloudy.png",
+      drizzle: "src/images/drizzle.png",
+      thunderstorm: "src/images/storm.png"
     };
-
     const defaultImage = "src/images/default.jpg";
 
-    // Set background image in <aside>
-    const asideImg = document.querySelector("aside-img");
+    // Set weather image
+    const asideImg = document.getElementById("aside-img");
     if (asideImg) {
       asideImg.src = weatherImages[weatherMain] || defaultImage;
     }
 
-    // Set current weather data
+    // Set overlay text
     const cityName = data.city.name;
     const countryName = getCountryName(data.city.country);
     const description = dailyData[0].weather[0].description;
@@ -54,32 +53,22 @@ async function getFiveDayForecast(city) {
     document.getElementById("weather-desc").textContent = `Weather Description: ${description}`;
     document.getElementById("temp").textContent = `Temperature: ${temp}°C`;
 
-    // Insert weather icon inside aside text container
-    let iconImg = document.querySelector("aside > div.absolute img.weather-icon");
+    // Insert weather icon into overlay (if not already added)
+    let iconImg = document.querySelector(".weather-icon");
     if (!iconImg) {
       iconImg = document.createElement("img");
       iconImg.className = "weather-icon w-16 h-16 mb-2";
-      document.querySelector("aside > div.absolute").insertBefore(iconImg, document.getElementById("City-name"));
+      const textContainer = document.getElementById("City-name").parentElement;
+      textContainer.insertBefore(iconImg, textContainer.firstChild);
     }
     iconImg.src = currentIconUrl;
     iconImg.alt = description;
-
-    // Optional background overlays styling
-    const aside = document.querySelector("aside-img");
-    if (aside) {
-      aside.style.backgroundColor = "rgba(156, 163, 175, 0.3)";
-    }
-
-    const textContainer = document.querySelector("aside > div.absolute");
-    if (textContainer) {
-      textContainer.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-    }
 
     // Clear previous forecast
     const forecastContainer = document.getElementById("forecast");
     forecastContainer.innerHTML = "";
 
-    // Create 5-day forecast cards
+    // Build forecast cards
     dailyData.slice(0, 5).forEach(day => {
       const date = new Date(day.dt_txt).toLocaleDateString("en-US", {
         weekday: "short",
@@ -93,8 +82,7 @@ async function getFiveDayForecast(city) {
       const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
       const dayDiv = document.createElement("div");
-      dayDiv.className =
-        "bg-white bg-opacity-30 text-gray-800 p-4 rounded-xl shadow-md flex flex-col items-center";
+      dayDiv.className = "bg-white bg-opacity-30 text-gray-800 p-4 rounded-xl shadow-md flex flex-col items-center";
 
       dayDiv.innerHTML = `
         <p class="font-semibold">${date}</p>
@@ -114,7 +102,7 @@ async function getFiveDayForecast(city) {
 
 // Load default weather for Delhi on page load
 window.addEventListener("DOMContentLoaded", () => {
-  getFiveDayForecast("Delhi,India");
+  getFiveDayForecast("Delhi,IN");
 });
 
 // Handle search button click
@@ -126,5 +114,3 @@ document.getElementById("SearchButton").addEventListener("click", () => {
     alert("Please enter a city name.");
   }
 });
-
-

@@ -26,28 +26,27 @@
     </button>
   </section>
 
-  <!-- Weather and Forecast Section -->
-  <div class="flex flex-col sm:flex-row gap-6 px-4">
-    <aside class="relative w-full lg:w-2/5 h-40 sm:64 md:h-72 min-h-[18rem] rounded-lg overflow-hidden shadow-md bg-gray-300">
-    <!-- Weather Image (should be absolutely positioned inside aside) -->
-    <img src="src/images/hot.png" alt="weather" id="aside-img" class=" inset-0 w-full h-50 object-cover z-0" />
+  <!-- Centered Weather Card -->
+  <div class="flex justify-center mb-8 px-4">
+    <div class="relative rounded-lg overflow-hidden shadow-md border border-blue-500"
+         style="background-color: #982727; width: 600px; min-height: 30rem; border-radius: 20px;">
 
-    <!-- Overlay Text (on top of the image) -->
-    <div class="absolute bottom-4 left-4 right-3 bg-black bg-opacity-60 text-white p-4 space-y-1 z-10">
-    <h2 id="City-name" class="text-xl font-bold">City: Delhi, India</h2>
-    <p id="weather-desc" class="capitalize">Weather Description: Light Rain</p>
-    <p id="temp" class="text-lg font-semibold">Temperature: 29°C</p>
-   </div>
-  </aside>
-    
+      <img src="src/images/rain.png" alt="weather"
+           id="aside-img" class="absolute inset-0 w-full h-full object-cover" style="object-fit: cover; border-radius: 20px;" />
 
-
-    <!-- Forecast Cards -->
-    <div class="flex flex-col w-full lg:w-3/5 gap-4">
-      <h2 class="text-xl text-center font-bold text-gray-700">5 - Day Forecast</h2>
-      <div id="forecast" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-        <!-- JS will dynamically inject forecast cards here -->
+      <div class="absolute bottom-0 left-0 right-0 bg-[rgba(0,0,0,0.3)] opacity-90 p-4 space-y-1 z-10 text-white">
+        <h2 id="City-name" class="text-xl font-bold">City: Delhi, India</h2>
+        <p id="weather-desc" class="capitalize">Weather Description: Light Rain</p>
+        <p id="temp" class="text-lg font-semibold">Temperature: 29°C</p>
       </div>
+    </div>
+  </div>
+
+  <!-- Forecast Cards -->
+  <div class="flex flex-col w-full lg:w-3/5 gap-4 mx-auto px-4">
+    <h2 class="text-xl text-center font-bold text-gray-700">5 - Day Forecast</h2>
+    <div id="forecast" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+      <!-- JS will dynamically inject forecast cards here -->
     </div>
   </div>
 
